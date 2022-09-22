@@ -1,0 +1,4 @@
+#Excluir caretas no deseadas en el repositorio local
+node_modules
+#en este caso es si se sube desde la raiz
+#si se sube de la raiz se añade / al inicio
