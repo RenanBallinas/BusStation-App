@@ -36,6 +36,19 @@ export default{
             next(error);
         }
     },
+
+    deleteUsuario:async(req,res,next)=>{
+        try {
+            const eliminar=await models.usuarios.findByIdAndDelete(req.params.id);
+            res.status(200).json(eliminar);
+        } catch (error) {
+            res.status(500).send({
+                message: "No se pudo eliminar el dato"
+            });
+            next(error);
+        }
+    },
+
     consultarOneUsuario:async(req, res, next)=>{
         try {
             const consultarUnUsuario=await models.usuarios.findById(req.params.id);

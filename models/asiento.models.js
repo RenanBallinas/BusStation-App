@@ -1,12 +1,13 @@
 import mongoose, {Schema} from "mongoose";
-import { stringify } from "uuid";
+
 
 const asiento=new Schema({
+    terminal:String,
     nombre:String,
     destino: String,
     fecha:String,
-    hora:String
-   
+    hora:String,
+    crearAc:{type: Date, default: Date. now}
  });
 
 const Asiento=mongoose.model('asientos',asiento);

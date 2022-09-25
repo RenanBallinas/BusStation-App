@@ -3,10 +3,10 @@ import models from "../models";
 export default{
     addAsientos:async(req, res, next)=>{
         try {
-            const {nombre,destino,fecha,hora}=req.body;
+            const {terminal, nombre, destino, fecha,hora}=req.body;
             
             const agregarAsiento=new models.Asiento({
-                nombre,destino,fecha,hora
+                 terminal, nombre, destino, fecha, hora
             });
          
 
@@ -23,7 +23,8 @@ export default{
     },    
     consultarAsiento:async(req, res, next)=>{
         try{
-            const consultarAsiento=await models.Asiento.find();
+            const consultarAsiento=
+                await models.Asiento.find();
             res.json(consultarAsiento);
             console.log(consultarAsiento);
         }
@@ -34,6 +35,19 @@ export default{
             next(error);
         }
     },
+
+    deleteAsiento:async(req,res,next)=>{
+        try {
+            const eliminar=await models.Asiento.findByIdAndDelete(req.params.id);
+            res.status(200).json(eliminar);
+        } catch (error) {
+            res.status(500).send({
+                message: "No se pudo eliminar el dato"
+            });
+            next(error);
+        }
+    },
+
     consultarOneAsiento:async(req, res, next)=>{
         try {
             const consultarUnAsiento=await models.Asiento.findById(req.params.id);
